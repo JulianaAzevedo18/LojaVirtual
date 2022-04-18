@@ -21,14 +21,14 @@ public class FuncionarioController {
 	@GetMapping ("/administrativo/funcionarios/cadastrar")
 	public ModelAndView cadastrar(FuncionarioModel funcionario) {
 		ModelAndView mv = new ModelAndView("/administrativo/funcionarios/cadastro");
-		mv.addObject("funcionario", funcionario);
+		mv.addObject("funcionarios", funcionario);
 		return mv;
 	}
 	
 	@GetMapping ("/administrativo/funcionarios/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("/administrativo/funcionarios/lista");
-		mv.addObject("listaFuncionario", funcionarioRepository.findAll());
+		mv.addObject("listaFuncionarios", funcionarioRepository.findAll());
 		return mv;
 	}
 
