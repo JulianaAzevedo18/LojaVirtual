@@ -16,7 +16,7 @@ public class DataConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/loja-virtual?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSl=false");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/lojavirtual?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSl=false");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;

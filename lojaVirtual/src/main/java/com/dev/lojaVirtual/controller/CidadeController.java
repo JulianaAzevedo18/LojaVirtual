@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dev.lojaVirtual.model.CidadeModel;
+import com.dev.lojaVirtual.model.Cidade;
 import com.dev.lojaVirtual.repository.CidadeRepository;
 import com.dev.lojaVirtual.repository.EstadoRepository;
 
-@Controller
-public class CidadeController {
+		
+	@Controller
+	public class CidadeController{
 		
 		@Autowired
 		private CidadeRepository cidadeRepositorio;
@@ -27,7 +28,7 @@ public class CidadeController {
 		
 		
 		@GetMapping("/administrativo/cidades/cadastrar")
-		public ModelAndView cadastrar(CidadeModel cidade) {
+		public ModelAndView cadastrar(Cidade cidade) {
 			ModelAndView mv =  new ModelAndView("administrativo/cidades/cadastro");
 			mv.addObject("cidade",cidade);
 			mv.addObject("listaEstados",estadoRepositorio.findAll());
@@ -43,26 +44,26 @@ public class CidadeController {
 		
 		@GetMapping("/administrativo/cidades/editar/{id}")
 		public ModelAndView editar(@PathVariable("id") Long id) {
-			Optional<CidadeModel> cidade = cidadeRepositorio.findById(id);
+			Optional<Cidade> cidade = cidadeRepositorio.findById(id);
 			return cadastrar(cidade.get());
 		}
 		
 		@GetMapping("/administrativo/cidades/remover/{id}")
 		public ModelAndView remover(@PathVariable("id") Long id) {
-			Optional<CidadeModel> cidade = cidadeRepositorio.findById(id);
+			Optional<Cidade> cidade = cidadeRepositorio.findById(id);
 			cidadeRepositorio.delete(cidade.get());
 			return listar();
 		}
 		
 		@PostMapping("/administrativo/cidades/salvar")
-		public ModelAndView salvar(@Valid CidadeModel cidade, BindingResult result) {
+		public ModelAndView salvar(@Valid Cidade cidade, BindingResult result) {
 			
 			if(result.hasErrors()) {
 				return cadastrar(cidade);
 			}
 			cidadeRepositorio.saveAndFlush(cidade);
 			
-			return cadastrar(new CidadeModel());
+			return cadastrar(new Cidade());
 		}
 
 	}

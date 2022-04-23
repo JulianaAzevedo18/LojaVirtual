@@ -23,10 +23,10 @@ public class ItensCompra implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	private ProdutoModel produto;
+	private Produto produto;
 
 	@ManyToOne
-	private CompraModel compra;
+	private Compra compra;
 
 	private Integer quantidade;
 
@@ -52,19 +52,19 @@ public class ItensCompra implements Serializable {
 		this.id = id;
 	}
 
-	public ProdutoModel getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(ProdutoModel produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 
-	public CompraModel getCompra() {
+	public Compra getCompra() {
 		return compra;
 	}
 
-	public void setCompra(CompraModel compra) {
+	public void setCompra(Compra compra) {
 		this.compra = compra;
 	}
 

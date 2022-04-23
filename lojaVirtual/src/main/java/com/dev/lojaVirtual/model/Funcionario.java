@@ -14,9 +14,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "funcionario")
-public class FuncionarioModel implements Serializable {
+public class Funcionario implements Serializable {
 	
-	public FuncionarioModel() {
+	public Funcionario() {
 		super();
 	}
 	
@@ -33,7 +33,7 @@ public class FuncionarioModel implements Serializable {
 	private Date dataSaida;
 	private String cargo;
 	@ManyToOne
-	private CidadeModel cidade;
+	private Cidade cidade;
 	private String logradouro;
 	private String numero;
 	private String complemento;
@@ -107,11 +107,11 @@ public class FuncionarioModel implements Serializable {
 		this.cargo = cargo;
 	}
 
-	public CidadeModel getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(CidadeModel cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
 

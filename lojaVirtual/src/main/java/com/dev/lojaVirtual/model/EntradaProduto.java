@@ -12,9 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "entrada_produto")
-public class EntradaProdutoModel implements Serializable {
+public class EntradaProduto implements Serializable {
 
-	public EntradaProdutoModel() {
+	public EntradaProduto() {
 		super();
 	}
 
@@ -24,7 +24,7 @@ public class EntradaProdutoModel implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	private FuncionarioModel funcionario;
+	private Funcionario funcionario;
 	private Date dataEntrada = new Date();
 	private String observacao;
 	private String fornecedor;
@@ -45,11 +45,11 @@ public class EntradaProdutoModel implements Serializable {
 		this.id = id;
 	}
 
-	public FuncionarioModel getFuncionario() {
+	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(FuncionarioModel funcionario) {
+	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
 

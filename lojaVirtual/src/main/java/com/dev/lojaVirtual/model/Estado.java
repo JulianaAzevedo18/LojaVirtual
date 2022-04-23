@@ -10,9 +10,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "estado")
-public class EstadoModel implements Serializable {
+public class Estado implements Serializable {
 
-	public EstadoModel() {
+	public Estado() {
 		super();
 	}
 

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dev.lojaVirtual.model.EntradaItensModel;
-import com.dev.lojaVirtual.model.EntradaProdutoModel;
-import com.dev.lojaVirtual.model.ProdutoModel;
+import com.dev.lojaVirtual.model.EntradaItens;
+import com.dev.lojaVirtual.model.EntradaProduto;
+import com.dev.lojaVirtual.model.Produto;
 import com.dev.lojaVirtual.repository.EntradaItensRepository;
 import com.dev.lojaVirtual.repository.EntradaProdutoRepository;
 import com.dev.lojaVirtual.repository.FuncionarioRepository;
@@ -21,7 +21,7 @@ import com.dev.lojaVirtual.repository.ProdutoRepository;
 @Controller
 public class EntradaProdutoController {
 	
-		private List<EntradaItensModel> listaEntrada = new ArrayList<EntradaItensModel>();
+		private List<EntradaItens> listaEntrada = new ArrayList<EntradaItens>();
 
 		@Autowired
 		private EntradaProdutoRepository entradaProdutoRepository;
@@ -36,7 +36,7 @@ public class EntradaProdutoController {
 		private ProdutoRepository produtoRepository;
 
 		@GetMapping("/administrativo/entrada/cadastrar")
-		public ModelAndView cadastrar(EntradaProdutoModel entrada, EntradaItensModel entradaItens) {
+		public ModelAndView cadastrar(EntradaProduto entrada, EntradaItens entradaItens) {
 			ModelAndView mv = new ModelAndView("administrativo/entrada/cadastro");
 			mv.addObject("entrada", entrada);
 			mv.addObject("listaEntradaItens", this.listaEntrada);
@@ -67,26 +67,26 @@ public class EntradaProdutoController {
 //		}*/
 
 		@PostMapping("/administrativo/entrada/salvar")
-		public ModelAndView salvar(String acao, EntradaProdutoModel entrada, EntradaItensModel entradaItens) {
+		public ModelAndView salvar(String acao, EntradaProduto entrada, EntradaItens entradaItens) {
 
 			if (acao.equals("itens")) {
 				this.listaEntrada.add(entradaItens);
 			} else if (acao.equals("salvar")) {
 				entradaProdutoRepository.saveAndFlush(entrada);
-				for (EntradaItensModel it : listaEntrada) {
+				for (EntradaItens it : listaEntrada) {
 					it.setEntrada(entrada);
 					entradaItensRepository.saveAndFlush(it);
-					Optional<ProdutoModel> prod = produtoRepository.findById(it.getProduto().getId());
-					ProdutoModel produto = prod.get();
+					Optional<Produto> prod = produtoRepository.findById(it.getProduto().getId());
+					Produto produto = prod.get();
 					produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + it.getQuantidade());
 					produto.setValorVenda(it.getValorVenda());
 					produtoRepository.saveAndFlush(produto);
 					this.listaEntrada = new ArrayList<>();
 				}
-				return cadastrar(new EntradaProdutoModel(), new EntradaItensModel());
+				return cadastrar(new EntradaProduto(), new EntradaItens());
 			}
 
-			return cadastrar(entrada, new EntradaItensModel());
+			return cadastrar(entrada, new EntradaItens());
 		}
 
 	}

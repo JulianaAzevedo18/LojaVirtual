@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "entrada_itens")
-public class EntradaItensModel implements Serializable {
+public class EntradaItens implements Serializable {
 
-	public EntradaItensModel() {
+	public EntradaItens() {
 		super();
 	}
 
@@ -23,9 +23,9 @@ public class EntradaItensModel implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	private EntradaProdutoModel entrada;
+	private EntradaProduto entrada;
 	@ManyToOne
-	private ProdutoModel produto;
+	private Produto produto;
 	private Double quantidade=0.;
 	private Double valorProduto=0.;
 	private Double valorVenda=0.;
@@ -48,19 +48,19 @@ public class EntradaItensModel implements Serializable {
 		this.id = id;
 	}
 
-	public EntradaProdutoModel getEntrada() {
+	public EntradaProduto getEntrada() {
 		return entrada;
 	}
 
-	public void setEntrada(EntradaProdutoModel entrada) {
+	public void setEntrada(EntradaProduto entrada) {
 		this.entrada = entrada;
 	}
 
-	public ProdutoModel getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(ProdutoModel produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 

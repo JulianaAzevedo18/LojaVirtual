@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.authentication.AnonymousAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dev.lojaVirtual.model.ClienteModel;
-import com.dev.lojaVirtual.model.CompraModel;
+import com.dev.lojaVirtual.model.Cliente;
+import com.dev.lojaVirtual.model.Compra;
 import com.dev.lojaVirtual.model.ItensCompra;
-import com.dev.lojaVirtual.model.ProdutoModel;
+import com.dev.lojaVirtual.model.Produto;
 import com.dev.lojaVirtual.repository.ClienteRepository;
 import com.dev.lojaVirtual.repository.CompraRepository;
 import com.dev.lojaVirtual.repository.ItensCompraRepository;
@@ -28,8 +28,8 @@ import com.dev.lojaVirtual.repository.ProdutoRepository;
 public class CarrinhoController {
 
 	private List<ItensCompra> itensCompra = new ArrayList<ItensCompra>();
-	private CompraModel compra = new CompraModel();
-	private ClienteModel cliente;
+	private Compra compra = new Compra();
+	private Cliente cliente;
 
 	@Autowired
 	private ProdutoRepository repositorioProduto;
@@ -60,17 +60,17 @@ public class CarrinhoController {
 		return mv;
 	}
 
-	private void buscarUsuarioLogado() {
-		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
-		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
-			String email = autenticado.getName();
-			cliente = repositorioCliente.buscarClienteEmail(email).get(0);
-		}
-	}
+	//	private void buscarUsuarioLogado() {
+	//		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+	//		if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+	//		String email = autenticado.getName();
+	//		cliente = repositorioCliente.buscarClienteEmail(email).get(0);
+	//	}
+	//}
 
 	@GetMapping("/finalizar")
 	public ModelAndView finalizarCompra() {
-		buscarUsuarioLogado();
+		//buscarUsuarioLogado();
 		ModelAndView mv = new ModelAndView("cliente/finalizar");
 		calcularTotal();
 		// System.out.println(compra.getValorTotal());
@@ -92,7 +92,7 @@ public class CarrinhoController {
 			repositorioItensCompra.saveAndFlush(c);
 		}
 		itensCompra = new ArrayList<>();
-		compra = new CompraModel();
+		compra = new Compra();
 		return mv;
 	}
 
@@ -135,8 +135,8 @@ public class CarrinhoController {
 	@GetMapping("/adicionarCarrinho/{id}")
 	public String adicionarCarrinho(@PathVariable Long id) {
 
-		Optional<ProdutoModel> prod = repositorioProduto.findById(id);
-		ProdutoModel produto = prod.get();
+		Optional<Produto> prod = repositorioProduto.findById(id);
+		Produto produto = prod.get();
 
 		int controle = 0;
 		for (ItensCompra it : itensCompra) {

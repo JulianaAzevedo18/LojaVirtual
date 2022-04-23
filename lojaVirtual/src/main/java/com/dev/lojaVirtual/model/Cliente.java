@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-public class ClienteModel implements Serializable {
+public class Cliente implements Serializable {
 
-	public ClienteModel() {
+	public Cliente() {
 		super();
 	}
 
@@ -28,7 +28,7 @@ public class ClienteModel implements Serializable {
 	private String senha;
 	
 	@ManyToOne
-	private CidadeModel cidade;
+	private Cidade cidade;
 
 	public Long getId() {
 		return id;
@@ -70,11 +70,11 @@ public class ClienteModel implements Serializable {
 		this.senha = senha;
 	}
 
-	public CidadeModel getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(CidadeModel cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
 

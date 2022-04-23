@@ -10,9 +10,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "papel")
-public class PapelModel implements Serializable {
+public class Papel implements Serializable {
 
-	public PapelModel() {
+	public Papel() {
 		super();
 	}
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dev.lojaVirtual.model.PermissaoModel;
+import com.dev.lojaVirtual.model.Permissao;
 import com.dev.lojaVirtual.repository.FuncionarioRepository;
 import com.dev.lojaVirtual.repository.PapelRepository;
 import com.dev.lojaVirtual.repository.PermissaoRepository;
@@ -31,7 +31,7 @@ public class PermissaoController {
 		
 		
 		@GetMapping("/administrativo/permissoes/cadastrar")
-		public ModelAndView cadastrar(PermissaoModel permissao) {
+		public ModelAndView cadastrar(Permissao permissao) {
 			ModelAndView mv =  new ModelAndView("administrativo/permissoes/cadastro");
 			mv.addObject("permissao",permissao);
 			mv.addObject("listaFuncionarios",funcionarioRepositorio.findAll());
@@ -48,26 +48,26 @@ public class PermissaoController {
 		
 		@GetMapping("/administrativo/permissoes/editar/{id}")
 		public ModelAndView editar(@PathVariable("id") Long id) {
-			Optional<PermissaoModel> permissao = permissaoRepositorio.findById(id);
+			Optional<Permissao> permissao = permissaoRepositorio.findById(id);
 			return cadastrar(permissao.get());
 		}
 		
 		@GetMapping("/administrativo/permissoes/remover/{id}")
 		public ModelAndView remover(@PathVariable("id") Long id) {
-			Optional<PermissaoModel> permissao = permissaoRepositorio.findById(id);
+			Optional<Permissao> permissao = permissaoRepositorio.findById(id);
 			permissaoRepositorio.delete(permissao.get());
 			return listar();
 		}
 		
 		@PostMapping("/administrativo/permissoes/salvar")
-		public ModelAndView salvar(@Valid PermissaoModel permissao, BindingResult result) {
+		public ModelAndView salvar(@Valid Permissao permissao, BindingResult result) {
 			
 			if(result.hasErrors()) {
 				return cadastrar(permissao);
 			}
 			permissaoRepositorio.saveAndFlush(permissao);
 			
-			return cadastrar(new PermissaoModel());
+			return cadastrar(new Permissao());
 		}
 
 	}

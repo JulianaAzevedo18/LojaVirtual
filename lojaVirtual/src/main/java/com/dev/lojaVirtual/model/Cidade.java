@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cidade")
-	public class CidadeModel implements Serializable {
+	public class Cidade implements Serializable {
 
-		public CidadeModel() {
+		public Cidade() {
 			super();
 		}
 
@@ -25,7 +25,7 @@ import javax.persistence.Table;
 		private String nome;
 		
 		@ManyToOne
-		private EstadoModel estado;
+		private Estado estado;
 
 		public Long getId() {
 			return id;
@@ -43,11 +43,11 @@ import javax.persistence.Table;
 			this.nome = nome;
 		}
 
-		public EstadoModel getEstado() {
+		public Estado getEstado() {
 			return estado;
 		}
 
-		public void setEstado(EstadoModel estado) {
+		public void setEstado(Estado estado) {
 			this.estado = estado;
 		}
 

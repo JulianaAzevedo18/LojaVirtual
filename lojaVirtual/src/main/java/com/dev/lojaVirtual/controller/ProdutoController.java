@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dev.lojaVirtual.model.ProdutoModel;
+import com.dev.lojaVirtual.model.Produto;
 import com.dev.lojaVirtual.repository.ProdutoRepository;
 
 @Controller
@@ -32,7 +32,7 @@ public class ProdutoController {
 		private ProdutoRepository produtoRepositorio;
 
 		@GetMapping("/administrativo/produtos/cadastrar")
-		public ModelAndView cadastrar(ProdutoModel produto) {
+		public ModelAndView cadastrar(Produto produto) {
 			ModelAndView mv = new ModelAndView("administrativo/produtos/cadastro");
 			mv.addObject("produto", produto);
 			return mv;
@@ -47,13 +47,13 @@ public class ProdutoController {
 
 		@GetMapping("/administrativo/produtos/editar/{id}")
 		public ModelAndView editar(@PathVariable("id") Long id) {
-			Optional<ProdutoModel> produto = produtoRepositorio.findById(id);
+			Optional<Produto> produto = produtoRepositorio.findById(id);
 			return cadastrar(produto.get());
 		}
 
 		@GetMapping("/administrativo/produtos/remover/{id}")
 		public ModelAndView remover(@PathVariable("id") Long id) {
-			Optional<ProdutoModel> produto = produtoRepositorio.findById(id);
+			Optional<Produto> produto = produtoRepositorio.findById(id);
 			produtoRepositorio.delete(produto.get());
 			return listar();
 		}
@@ -71,7 +71,7 @@ public class ProdutoController {
 		}
 
 		@PostMapping("/administrativo/produtos/salvar")
-		public ModelAndView salvar(@Valid ProdutoModel produto, BindingResult result,
+		public ModelAndView salvar(@Valid Produto produto, BindingResult result,
 				@RequestParam("file") MultipartFile arquivo) {
 
 			if (result.hasErrors()) {
@@ -95,7 +95,7 @@ public class ProdutoController {
 				e.printStackTrace();
 			}
 
-			return cadastrar(new ProdutoModel());
+			return cadastrar(new Produto());
 		}
 
 	}

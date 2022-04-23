@@ -14,9 +14,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "permissoes")
-public class PermissaoModel implements Serializable {
+public class Permissao implements Serializable {
 
-	public PermissaoModel() {
+	public Permissao() {
 		super();
 	}
 
@@ -29,10 +29,10 @@ public class PermissaoModel implements Serializable {
 	private Date dataCadastro = new Date();
 	
 	@ManyToOne
-	private FuncionarioModel funcionario;
+	private Funcionario funcionario;
 	
 	@ManyToOne
-	private PapelModel papel;
+	private Papel papel;
 
 	public Long getId() {
 		return id;
@@ -50,19 +50,19 @@ public class PermissaoModel implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public FuncionarioModel getFuncionario() {
+	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(FuncionarioModel funcionario) {
+	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
 
-	public PapelModel getPapel() {
+	public Papel getPapel() {
 		return papel;
 	}
 
-	public void setPapel(PapelModel papel) {
+	public void setPapel(Papel papel) {
 		this.papel = papel;
 	}
 }

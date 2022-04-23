@@ -10,9 +10,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-public class ProdutoModel implements Serializable {
+public class Produto implements Serializable {
 
-	public ProdutoModel() {
+	public Produto() {
 		super();
 	}
 

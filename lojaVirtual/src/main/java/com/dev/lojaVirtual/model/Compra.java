@@ -14,9 +14,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "compra")
-public class CompraModel implements Serializable {
+public class Compra implements Serializable {
 
-	public CompraModel() {
+	public Compra() {
 		super();
 	}
 
@@ -26,7 +26,7 @@ public class CompraModel implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	private ClienteModel cliente;
+	private Cliente cliente;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra = new Date();
 	private String formaPagamento;
@@ -40,11 +40,11 @@ public class CompraModel implements Serializable {
 		this.id = id;
 	}
 
-	public ClienteModel getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteModel cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
